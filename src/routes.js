@@ -7,8 +7,23 @@ import Search from './pages/Search'; //Importamos a página Search
 //nossa rota é do tipo Drawer
 const Drawer = createDrawerNavigator(); 
 
+//Criamos nossos tipos de navegação Drawer, e nele temos nossas screens/paginas
 function Routes(){
     return(
-        <Drawer.Navigator></Drawer.Navigator>
+        <Drawer.Navigator>
+            <Drawer.Screen 
+                name="Home"
+                component={Home}
+
+            />
+
+            <Drawer.Screen 
+                name="Search"
+                component={Search}
+            />
+
+        </Drawer.Navigator>
     )
 }
+
+export default Routes;
