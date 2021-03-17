@@ -19,7 +19,7 @@ export default function Header(){
                 size={150}
             />
 
-            <Text>30°</Text>
+            <Text style={styles.temp}>30°</Text>
 
         </LinearGradient>
     )
@@ -27,6 +27,24 @@ export default function Header(){
 
 const styles = StyleSheet.create({
     header:{
-
+        width: '95%',
+        height: '55%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 8
+    },
+    date:{
+        color: '#FFF',
+        fontSize: 17 
+    },
+    city:{
+        color: '#FFF',
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    temp:{
+        color: '#FFF',
+        fontSize: 80,
+        fontWeight: 'bold'
     }
 });
