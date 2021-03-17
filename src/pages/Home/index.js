@@ -1,11 +1,13 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, Text, StyleSheet, FlatList } from 'react-native';
+import * as Location from 'expo-location';
 
 import Menu from '../../components/Menu'; // o '../ sai da pasta e o segundo ../ desce mais uma pasta
 import Header from '../../components/Header';
 import Conditions from '../../components/Conditions';
 import Forecast from '../../components/Forecast';
+import { set } from 'react-native-reanimated';
 
 const mylist = [
     {
@@ -91,6 +93,32 @@ const mylist = [
   ];
 
 export default function Home(){
+//O use effect faz alguma coisa qnd vc abre o app. nesse caso ele tem a função de pegar a localização.
+
+ const [errorMsg, setErrorMsg] = useState(null); // Mensagem de erro caso recuse
+ const [loading, setLoading] = useState(true); // Loading enquanto faz a requisição
+ useEffect(()=>{
+
+  (async ()=>{
+
+    let { status } = await Location.requestPermissionsAsync();
+    //Pede o status da permissão, espera a requisição acessando nosso Location
+
+    if(status !== 'granted'){
+      setErrorMsg('Se não der a localização não tem como usar o aplicativo!');
+      setLoading(false);
+      return;
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    console.log(location.coords);
+
+  })();
+
+
+  }, []);
+
+
     return(
         <SafeAreaView style={styles.container}>
             <Menu />
